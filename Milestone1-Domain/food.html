@@ -1,0 +1,108 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Products</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style1.css">
+
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .cart-link {
+      float: right;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+   
+     <header class="navbar">
+    <div class="logo">🐾 PetCareHub</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index1.html#products">Back to Products</a>
+     <a href="cart.html" class="cart-link">🛒 Cart (<span id="cartCount">0</span>)</a>
+
+    </nav>
+   
+  </header>
+
+   <section class="product-list">
+    <h2>🥩 Pet Food</h2>
+    <p>Nutritious meals for your furry friends.</p>
+ <div class="products">
+    <div class="product-card">
+      <img src="images/grain-free.jpeg" alt="Grain Free Cat Food">
+      <h3>Grain Free Cat Food</h3>
+          <p>Delicious and healthy formula for cats.</p>
+      <p>₹500</p>
+      <button class="add-to-cart" onclick="addToCart('Grain Free Cat Food', 500, 'images/grain-free.jpeg')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="images/dry-food.jpeg" alt="Dry dog Food">
+      <h3>Dryy dog Food</h3>
+      <p>Rich in protein and vitamins for active dogs.</p>
+      <p>₹500</p>
+      <button class="add-to-cart" onclick="addToCart('Dryy dog Food', 500, 'images/dry-food.jpeg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/dogFood1.jpeg" alt="Premium Dog Food">
+      <h3>Premium Dog Food</h3>
+        <p>Healthy and tasty food for your pet.</p>
+      <p>₹750</p>
+      <button class="add-to-cart" onclick="addToCart('Premium Dog Food', 750, 'images/dogFood1.jpeg')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="images/milk-food.jpeg" alt="Puppy Milk Formula">
+      <h3>Puppy Milk Formula</h3>
+        <p>Nutrition blend for growing puppies.</p>
+      <p>₹750</p>
+      <button class="add-to-cart" onclick="addToCart('Puppy Milk Formula', 750, 'images/milk-food.jpeg')">Add to Cart</button>
+    </div>
+    </div>
+  </section>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function addToCart(name, price, img) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, img, qty: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  updateCartCount();
+</script>
+  <footer class="footer">
+    <p>© 2025 PetCareHub | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
+

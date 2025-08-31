@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐕PetCareHub - Your Pet’s Favorite Store</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+ 
+  <header class="navbar">
+    <div class="logo">🐾 PetCareHub</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#products">Products</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="btn login">Log In</button>
+      <button class="btn signup">Sign Up</button>
+      <button id="darkModeToggle">🌙</button>
+<a href="cart.html">Cart 🛒 <span id="cartCount">0</span></a>
+
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </header>
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Log In</h2>
+    <form class="form">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit" class="btn primary">Log In</button>
+    </form>
+    <p>Don't have an account? <a href="#" onclick="switchModal('loginModal','signupModal')">Sign Up</a></p>
+  </div>
+</div>
+<div class="modal" id="signupModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <form class="form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit" class="btn primary">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="#" onclick="switchModal('signupModal','loginModal')">Log In</a></p>
+  </div>
+</div>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>All-in-One Pet Store</h1>
+      <p>From healthy food to fun toys and expert care – everything your furry friend needs in one place.</p>
+      <a href="#products" class="btn primary">Shop Now</a>
+    </div>
+    <div class="hero-img">
+      <img src="images/doggy.png" alt="Cute pets">
+    </div>
+  </section>
+
+ 
+  <section class="video-section">
+    <video controls>
+      <source src="images/dog-video.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+  </section>
+
+  
+  <section class="features" id="products">
+    <div class="feature">
+      <h3>🥩 Nutritious Food</h3>
+      <p>Premium pet food packed with nutrients and flavor to keep tails wagging.</p>
+          <a href="food.html" class="btn primary">View Products</a>
+    </div>
+    <div class="feature">
+      <h3>🧸 Toys & Fun</h3>
+      <p>Chew toys, ropes, and games that keep pets happy and active.</p>
+          <a href="toys.html" class="btn primary">View Products</a>
+    </div>
+    <div class="feature">
+      <h3>⚕️ Health Care</h3>
+      <p>Supplements and treatments to ensure your pet stays strong and healthy.</p>
+          <a href="health.html" class="btn primary">View Products</a>
+    </div>
+    <div class="feature" id="services">
+      <h3>✂️ Grooming</h3>
+      <p>Professional grooming essentials for clean, stylish pets.</p>
+        <a href="grooming.html" class="btn primary">View Products</a>
+    </div>
+  </section>
+
+
+  <section class="proofs" id="about">
+    <h1 style="text-align: center;">🐾 Why Choose Us?</h1>
+    <div class="proofs-img">
+      <img src="images/happy-customer1.jpg" alt="Happy customer">
+    </div>
+    <div class="proofs-text">
+      <p>“PetCareHub has transformed how I care for my dog. Their organic food and grooming kits are top quality.”</p>
+      <h4>- Sasirekha A</h4>
+    </div>
+  </section>
+
+
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <h2>🐾 Get in Touch</h2>
+    <p>We’d love to hear from you! Whether you have questions about products, services, or just want to share your pet’s story, drop us a message below.</p>
+    
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn primary">Send Message</button>
+    </form>
+  </div>
+  
+  <div class="contact-right">
+    <img src="images/hero-doggy.jpg" alt="Happy Pet">
+  </div>
+</section>
+  <footer class="footer">
+    <div class="footer-left">
+      <h3>🐾 PetCareHub</h3>
+      <p>Bringing love and care to every pet’s life.</p>
+      <form class="newsletter">
+        <input type="email" placeholder="Enter email">
+        <button type="submit" class="btn primary" id="subscribeBtn">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-right">
+      <ul>
+        <li><strong>Explore</strong></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      
+      <ul>
+        <li><strong>Follow Us</strong></li>
+        <li>🐦 Twitter</li>
+        <li>📘 Facebook</li>
+        <li>📷 Instagram</li>
+      </ul>
+    </div>
+  </footer>
+
+
+  <script src="script1.js"></script>
+</body>
+</html>

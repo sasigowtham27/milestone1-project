@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Products</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style1.css">
+
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .cart-link {
+      float: right;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+   
+     <header class="navbar">
+    <div class="logo">🐾 PetCareHub</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index1.html#products">Back to Products</a>
+     <a href="cart.html" class="cart-link">🛒 Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+   
+  </header>
+<section class="product-list">
+    <h2>🧸 Toys & Fun</h2>
+    <p>Explore our fun and engaging pet toys collection.</p>
+
+    <div class="products">
+      <div class="product-card">
+        <img src="images/chew-toy.jpeg" alt="Chew Toy">
+        <h3>Chew Bone Toy</h3>
+        <p>Durable chew toy for dogs of all sizes.</p>
+          <p class="price">₹450</p>
+          <button class="add-to-cart" onclick="addToCart('Chew Bone Toy', 450, 'images/chew-toy.jpeg')">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/rope-toy.jpeg" alt="Rope Toy">
+        <h3>Rope Pull Toy</h3>
+        <p>Perfect for playtime tug-of-war fun.</p>  
+        <p class="price">₹580</p>
+        <button class="add-to-cart" onclick="addToCart('Rope Pull Toy', 580, 'images/rope-toy.jpeg')">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/ball-toy.jpeg" alt="Ball Toy">
+        <h3>Interactive Ball</h3>
+        <p>Keep your pets active & entertained.</p>
+          <p class="price">₹600</p>
+          <button class="add-to-cart" onclick="addToCart('Interactive Ball', 600, 'images/ball-toy.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function addToCart(name, price, img) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, img, qty: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  updateCartCount();
+</script>
+  <footer class="footer">
+    <p>© 2025 PetCareHub | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
+
+

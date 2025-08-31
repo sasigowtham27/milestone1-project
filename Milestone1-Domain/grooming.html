@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Products</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style1.css">
+
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .cart-link {
+      float: right;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+   
+     <header class="navbar">
+    <div class="logo">🐾 PetCareHub</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index1.html#products">Back to Products</a>
+     <a href="cart.html" class="cart-link">🛒 Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+   
+  </header>
+
+   <section class="product-list">
+    <h2>✂️ Grooming</h2>
+    <p>Everything you need to keep pets fresh and stylish.</p>
+
+    <div class="products">
+      <div class="product-card">
+        <img src="images/shompoo.jpeg" alt="Shampoo">
+        <h3>Pet Shampoo</h3>
+        <p>Gentle formula for soft, shiny coats.</p>
+          <p class="price">₹1500</p>
+             <button class="add-to-cart" onclick="addToCart('Pet Shampoo', 1500, 'images/shompoo.jpeg')">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/brush.jpeg" alt="Brush">
+        <h3>Pet Brush</h3>
+        <p>Removes weak hair,prevents tangles.</p>
+          <p class="price">₹800</p>
+             <button class="add-to-cart" onclick="addToCart('Pet Brush', 800, 'images/brush.jpeg')">Add to Cart</button>
+
+      </div>
+
+      <div class="product-card">
+        <img src="images/nail-clippers.jpeg" alt="Nail Clipper">
+        <h3>Nail Clippers</h3>
+        <p>Safe and easy trimming tool.</p>
+          <p class="price">₹700</p>
+             <button class="add-to-cart" onclick="addToCart('Nail Clippers', 700, 'images/nail-clippers.jpeg')">Add to Cart</button>
+       </div>
+    </div>
+  </section>
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function addToCart(name, price, img) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, img, qty: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  updateCartCount();
+</script>
+  <footer class="footer">
+    <p>© 2025 PetCareHub | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
+
+

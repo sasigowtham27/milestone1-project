@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <header>
+    <h1>Your Shopping Cart 🛒</h1>
+    <a href="index1.html">← Continue Shopping</a>
+  </header>
+
+  <section class="cart-section">
+    <div id="cartItems"></div>
+    <h3 id="cartTotal"></h3>
+  </section>
+
+<script>
+    // Load cart from localStorage or initialize as empty array
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log("Loaded cart from localStorage:", cart);
+
+    // Helper function to check if cart has items
+    function isCartEmpty() {
+        return cart.length === 0;
+    }
+
+    function renderCart() {
+        const cartItemsDiv = document.getElementById("cartItems");
+        const totalDiv = document.getElementById("cartTotal");
+
+        if (isCartEmpty()) {
+            cartItemsDiv.innerHTML = "<p>Your cart is empty 🐾</p>";
+            totalDiv.textContent = "";
+            return;
+        }
+
+        let html = "";
+        let total = 0;
+
+        cart.forEach((item, i) => {
+            total += item.price * item.qty;
+            html += `
+                <div class="cart-item" data-index="${i}">
+                    <img src="${item.img}" alt="${item.name}" width="80">
+                    <h4>${item.name}</h4>
+                    <p>₹${item.price} x ${item.qty}</p>
+                    <button class="remove-btn">Remove</button>
+                </div>
+            `;
+        });
+
+        cartItemsDiv.innerHTML = html;
+        totalDiv.textContent = "Total: ₹" + total;
+        
+        // Attach event listeners to remove buttons
+        const removeButtons = cartItemsDiv.querySelectorAll('.remove-btn');
+        removeButtons.forEach((btn, idx) => {
+            btn.addEventListener('click', function() {
+                removeItem(parseInt(btn.parentElement.getAttribute('data-index')));
+            });
+        });
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+    }
+
+    // Show a message in the console if cart is empty or not
+    if (isCartEmpty()) {
+        console.log("No products have been selected. Cart is empty.");
+    } else {
+        console.log("Products have been selected. Cart contains:", cart);
+    }
+
+    renderCart();
+</script>
+</body>
+</html>

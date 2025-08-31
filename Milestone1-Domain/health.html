@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Products</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style1.css">
+
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .cart-link {
+      float: right;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+   
+     <header class="navbar">
+    <div class="logo">🐾 PetCareHub</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index1.html#products">Back to Products</a>
+     <a href="cart.html" class="cart-link">🛒 Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+   
+  </header>
+
+   <section class="product-list">
+    <h2>⚕️ Health Care</h2>
+    <p>Ensure your pet stays healthy and protected.</p>
+
+    <div class="products">
+      <div class="product-card">
+        <img src="images/vitamin1.jpeg" alt="Supplements">
+        <h3>Vitamin Supplements</h3>
+        <p>Boost your dogs or cats immunity and super energy performance and provide overall health support.</p>
+          <p class="price">₹350</p>
+           <button class="add-to-cart" onclick="addToCart('Vitamin Supplements', 350, 'images/vitamin1.jpeg')">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/flea-tick.jpeg" alt="Flea Medicine">
+        <h3>Flea & Tick Treatment</h3>
+        <p>Protects pets from harmful parasites.</p>
+          <p class="price">₹500</p>
+           <button class="add-to-cart" onclick="addToCart('Flea & Tick Treatment', 500, 'images/flea-tick.jpeg')">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/first-aid.jpeg" alt="First Aid">
+        <h3>Pet First Aid Kit</h3>
+        <p>Essential kit for emergencies at home.</p>
+          <p class="price">₹200</p>
+           <button class="add-to-cart" onclick="addToCart('Pet First Aid Kit', 200, 'images/first-aid.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function addToCart(name, price, img) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, img, qty: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  updateCartCount();
+</script>
+  <footer class="footer">
+    <p>© 2025 PetCareHub | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
+
+
